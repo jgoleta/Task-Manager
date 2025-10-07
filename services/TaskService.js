@@ -13,4 +13,8 @@ const DeleteTask = async (taskId) => {
     return await Task.findByIdAndDelete(taskId);
 }
 
+const getTasks = async () => {
+    return await Task.find();
+}
+
 export default { CreateTask, UpdateTask, DeleteTask };
