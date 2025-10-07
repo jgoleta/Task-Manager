@@ -3,3 +3,6 @@ import { getUser, createUser } from '../controllers/UserController.js';
 import { ValidateRegister } from '../validators/UserValidator.js'; 
 
 const router = express.Router();
+
+router.post('/register', ValidateRegister, createUser);
+router.post ('/login', getUser);
