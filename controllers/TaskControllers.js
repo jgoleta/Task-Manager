@@ -26,3 +26,17 @@ export const UpdateTask = async (req, res) => {
     }
 };
 
+export const DeleteTask = async (req, res) => {
+    try {
+        const deletedTask = await Task.findByIdAndDelete(
+            req.params.id
+        );
+        if (!deletedTask) {
+            res.status(404).json({ message: "Task not found." });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+
+};
+
