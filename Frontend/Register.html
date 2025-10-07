@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Login</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: sans-serif;
+      line-height: 1.5;
+      min-height: 100vh;
+      background: #f3f3f3;
+      flex-direction: column;
+      margin: 0;
+    }
+
+    .main {
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      width: 400px;
+      text-align: center;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      border: none;
+      color: white;
+      cursor: pointer;
+      background-color: #101310;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    .wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="main">
+    <h2>Register</h2>
+    <form id="info">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" placeholder="Enter your Username" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+
+      <div class="wrap">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+
+ <script>
+  const form = document.getElementById("info");
+  
+  form.addEventListener("submit", function(event) {
+    event.preventDefault(); 
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    fetch("https://fordemo-ot4j.onrender.com/users", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password })
+
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+  })
+</script>
+</body>
+</html>
