@@ -40,3 +40,27 @@ export const DeleteTask = async (req, res) => {
 
 };
 
+export const GetTaskById = async (req, res) => {
+    try {
+        const task = await Task.findById(
+            req.params.id
+        );
+        if (!task) {
+            return res.status(404).json({ message: "Task not found." });
+        }
+    } catch (error) {
+        res.status(code).json({ error: error.message });
+    }
+    res.status(200).json(task);
+};  
+
+export const GetAllTasks = async (req, res) => {
+    try {
+        const tasks = await Task.find();
+        res.status(200).json(tasks);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+
